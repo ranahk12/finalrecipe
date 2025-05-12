@@ -12,8 +12,12 @@ COPY .mvn .mvn
 COPY pom.xml ./
 COPY src ./src
 
+# Make the mvnw script executable
+RUN chmod +x mvnw
+
 # Build the application
 RUN ./mvnw clean package -DskipTests
+
 
 # Use a smaller runtime image for the final stage
 FROM eclipse-temurin:17-jdk-alpine
